@@ -35,30 +35,38 @@ class Stick {
 
   //More Code
   Stick (Point center, int l, color c_stick){
-    start_p = center;
-    end_p = new Point (mouse_xpos + l, mouse_ypos + l);
     length = l;
+    start_p = center;
+    end_p = new Point (start_p.x + length, start_p.y);
     col = c_stick;
+  }
+  
+  void capture_movement(int x, int y){
+    println(x, y);
+    float x_calc = x - start_p.x;
+    float y_calc = start_p.y - y;
+    
   }
   
   void display(){
     fill(col);
     strokeWeight(2);
     rect(start_p.x, start_p.y, length, 5);
-}
+  }
   
 }
 
 class Table {
   Ball [] b_arr;
   Ball cue_ball;
+  Stick st;
   
-  Table(){
+  Table() {
     cue_ball = new Ball( 35, width/5, (height/2)+15, 255);               //Draws cue ball to the table
-    st = new Stick(cue_ball.
+    st = new Stick(cue_ball.center, 100, color(200, 0, 0));
   }
   
-  void display(){
+  void display_backdrop(){
     background(80);
     //Creating the pool table to the screen and the general layout of the background
     fill(100, 26, 26);              //Brown colour        
